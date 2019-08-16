@@ -6,6 +6,11 @@ stages {
                 git credentialsId: 'bc8a73bd-e260-4c70-acce-8f6daa7dd67d', url: 'https://github.com/sridharbabukv/HouseApp.git'
              }
         }
+        stage('Mvn Package'){
+              steps {
+                bat label: '', script: 'mvn clean package'
+              }
+        }
         
         stage('Build Docker Image'){
             steps {
