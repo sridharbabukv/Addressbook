@@ -25,11 +25,11 @@ public class ContactForm extends FormLayout {
 
     Button save = new Button("Save", this::save);
     Button cancel = new Button("Cancel", this::cancel);
-    TextField firstName = new TextField("First Name");
-    TextField lastName = new TextField("Last Name");
+    TextField firstName = new TextField("FirstName");
+    TextField lastName = new TextField("LastName");
     TextField phone = new TextField("Mobile");
     TextField email = new TextField("Email");
-    DateField birthDate = new DateField("Birth Date");
+    DateField birthDate = new DateField("BirthDate");
 
     Contact contact;
 
