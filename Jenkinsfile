@@ -125,7 +125,7 @@ pipeline
 		   recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequesterRecipientProvider']],
 		   replyTo: 'do-not-reply@company.com', 
 		   subject: "Status: ${currentBuild.result?:'SUCCESS'} -  Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
-			to: 'kellavijay@gmail.com kvk999999@gmail.com'
+			to: 'kellavijay@gmail.com sridharbabu.kv@gmail.com kvk999999@gmail.com'
 		}
 		failure 
 		{
@@ -143,7 +143,7 @@ pipeline
 		   recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequesterRecipientProvider']],
 		   replyTo: 'do-not-reply@company.com', 
 		   subject: "Status: ${currentBuild.result?:'SUCCESS'} -  Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
-			to: 'vijay221012@gmail.com kellavijay88@gmail.com'
+			to: 'kellavijay@gmail.com sridharbabu.kv@gmail.com kvk999999@gmail.com'
 		}
 
 	}
