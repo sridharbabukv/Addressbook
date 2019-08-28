@@ -34,7 +34,7 @@ public class TestLogger {
                         s = util.getErrorMessage(e); 
                 }
                 LOG.info(s);
-                assert(s.contains("/ by zero"));  
+                assert(s.contains("abcdefg/ by zero"));
         }
 
         @Test
