@@ -17,12 +17,7 @@ stages
               }
         }
         
-         stage ('Analysis') {
-            steps {
-                bat "${MAVEN_HOME}/bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs"
-            }
-        }
-        
+               
           
         stage('Remove Container on QA env')
         {
