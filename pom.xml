@@ -1,21 +1,3 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@sridharbabukv 
-2
-0 0 sridharbabukv/HouseApp
- Code  Issues 0  Pull requests 2  Projects 0  Wiki  Security  Insights  Settings
-HouseApp/pom.xml
-@sridharbabukv sridharbabukv POM file
-11ca6f6 2 minutes ago
-501 lines (474 sloc)  20.2 KB
-    
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -529,15 +511,3 @@ HouseApp/pom.xml
     </profiles>
 
 </project>
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
