@@ -56,7 +56,7 @@ pipeline
 		{
 			steps {    
 				script {
-				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=QAServer").trim()
+				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=TestingServer").trim()
 			  
 				echo FILENAME
 				
@@ -89,9 +89,9 @@ pipeline
 
 		stage('Start QA env'){
 			steps {    
-				bat 'docker run -itd --name QAServer -p 9553:8080 kellavijay/javadockerimage:1.0'                
+				bat 'docker run -itd --name TestingServer -p 9553:8080 kellavijay/javadockerimage:1.0'                
 				script {
-				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=QAServer").trim()
+				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=TestingServer").trim()
 			  
 				echo FILENAME
 				
