@@ -3,9 +3,9 @@ pipeline
    agent any
 	stages 
 	{   
-	   /* I am comment*/
-		stage ('Cloning')
-		{
+
+		/*No required Comments*/
+		stage ('Cloning'){
 			steps {
 				git credentialsId: 'bc8a73bd-e260-4c70-acce-8f6daa7dd67d', url: 'https://github.com/sridharbabukv/HouseApp.git'
 			}
