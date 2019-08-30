@@ -3,7 +3,6 @@ pipeline
    agent any
 	stages 
 	{   
-
 		/*No required Comments*/
 		stage ('Cloning'){
 			steps {
@@ -57,7 +56,7 @@ pipeline
 		{
 			steps {    
 				script {
-				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=QAServer").trim()
+				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=TestingServer").trim()
 			  
 				echo FILENAME
 				
@@ -90,9 +89,9 @@ pipeline
 
 		stage('Start QA env'){
 			steps {    
-				bat 'docker run -itd --name QAServer -p 9533:8080 kellavijay/javadockerimage:1.0'                
+				bat 'docker run -itd --name TestingServer -p 9553:8080 kellavijay/javadockerimage:1.0'                
 				script {
-				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=QAServer").trim()
+				  FILENAME = bat(label: 'Get file name', returnStdout: true, script:"@docker ps -a -q --filter  name=TestingServer").trim()
 			  
 				echo FILENAME
 				
@@ -117,7 +116,7 @@ pipeline
 		   <tr><td> <p>Please find the below project Build Details.</h4></p></tr>
 		   <tr><td> <b>PROJECT NAME:</b><span> \'${env.JOB_NAME}\' </span></td> </tr>
 		   <tr><td> <b>BUILD VERSION:</b><span> \'${env.BUILD_NUMBER}\'</span></td> </tr>
-		   <tr><td> <b>BUILD URL:</b>&nbsp;<a href="http://192.168.10.55:9533/addressbook/">http://192.168.10.55:9533/addressbook/<a></td> </tr>
+		   <tr><td> <b>BUILD URL:</b>&nbsp;<a href="http://192.168.10.55:9553/addressbook/">http://192.168.10.55:9553/addressbook/<a></td> </tr>
 			<!-- <tr><td><p>View console output at "<a href="${env.BUILD_URL}"> ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p></td></tr> -->
 			 <tr><td><p><i>(Build log is attached.)</i></p></td></tr>
 			  <tr><td><p>Thanks & Regards,<br/><span>Deployment Team.</span></p>       
