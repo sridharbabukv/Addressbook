@@ -15,7 +15,16 @@ pipeline
 				bat label: '', script: 'mvn clean test'
 			}
 		}
-	
+		
+		stage('Sonar Qube Analysis'){
+			steps{
+				def mvnHome = tool name: 'Maven', type: 'maven'
+				withSonarQubeEnv('sonar-6'){
+					bat "${mvnHome}/bin/mvn sonar:sonar"
+				}
+			}
+		}
+		
 		stage ('Code Quality Analysis') 
 		{
 			steps {
