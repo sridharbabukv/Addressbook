@@ -18,7 +18,7 @@ pipeline
 		
 		stage('Sonar Qube Analysis'){
 			steps{
-				def mvnHome = "\"${tool 'Maven', type 'maven'}\"
+				def mvnHome = "${tool 'Maven', type 'maven'}"
 				withSonarQubeEnv('sonar1'){
 					bat "${mvnHome}/bin/mvn sonar:sonar"
 				}
