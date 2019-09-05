@@ -18,7 +18,7 @@ pipeline
 		
 		stage('Sonar Qube Analysis'){
 			steps{				
-				withSonarQubeEnv('sonar1')
+				withSonarQubeEnv('sonarH2')
 				{
 					bat "${MAVEN_HOME}/bin/mvn sonar:sonar"
 				}
