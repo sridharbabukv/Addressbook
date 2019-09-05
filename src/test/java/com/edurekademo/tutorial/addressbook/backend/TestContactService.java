@@ -25,7 +25,7 @@ public class TestContactService {
 	public void filter() {
 
 		ContactService contactSearch = ContactService.createDemoService();
-		List<Contact> search = contactSearch.findAll("peeetr"); /*peter*/
+		List<Contact> search = contactSearch.findAll("peter"); /*peter*/
 		assertEquals(7, search.size());
 	}
 }
