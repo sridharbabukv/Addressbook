@@ -3,19 +3,19 @@ pipeline
    agent any
 	stages 
 	{   
-		/*No required Comments*/
+		/*Source code checkout from GIT*/
 		stage ('Cloning'){
 			steps {
 				git credentialsId: 'bc8a73bd-e260-4c70-acce-8f6daa7dd67d', url: 'https://github.com/sridharbabukv/HouseApp.git'
 			}
 		}
-		
+		/*Unit Testing with Maven Build Tool*/
 		stage ('Unit Test'){
 			steps {
 				bat label: '', script: 'mvn clean test'
 			}
 		}
-		
+		/*Code Analysis with SonarQube and PostgreSQL*/
 		stage('Sonar Qube Analysis'){
 			steps{				
 				withSonarQubeEnv('sonarH2')
@@ -24,7 +24,7 @@ pipeline
 				}
 			}
 		}		
-				
+		/* Package with Maven Build Tool */	
 		 stage('Package')
 		  {
 			  steps 
@@ -33,7 +33,7 @@ pipeline
 
 			  }			  		
 		  }
-		  
+		  /* Remove Existing Docker Container */
 		stage('Remove Existing QA env')
 		{
 			steps {    
@@ -51,14 +51,14 @@ pipeline
 				}
 			}
 		}
-   
+   		/* Create Docker Image */
 		stage('Create Docker Image for QA env')
 		{
 			steps {
 			bat label: '', script: 'docker build -t kellavijay/javadockerimage:1.0 .'
 			}
 		}
-
+		/* Push Docker Image to Docker Hub */
 		stage('Push Docker Image to DockerHub'){
 			steps {
 			withCredentials([string(credentialsId: 'vijayDockerHub', variable: 'dockerHudPwd')]) {
@@ -68,7 +68,7 @@ pipeline
 			bat 'docker push kellavijay/javadockerimage:1.0'
 			}
 		}
-
+		/* Create Docker Container and Deploy to QA Environment */
 		stage('Start QA env'){
 			steps {    
 				bat 'docker run -itd --name TestingServer -p 9553:8080 kellavijay/javadockerimage:1.0'                
@@ -89,7 +89,7 @@ pipeline
 	}
     post 
     {
-            
+            	/* Sent Success Notification through EMail */
 		success 
 		{
 		   emailext attachLog: true, 
@@ -112,6 +112,7 @@ pipeline
 		}
 		failure 
 		{
+			/* Sent Failure Notification through EMail */
 		 emailext attachLog: true, 
 		   body:         """<table>
 		  <tr><td> Hi Deployment Team,</td></tr>
