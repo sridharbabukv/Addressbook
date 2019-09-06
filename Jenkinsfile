@@ -4,19 +4,19 @@ pipeline
 	stages 
 	{   
 		/*Source code checkout from GIT*/
-		stage ('Cloning'){
+		stage ('Checkout from GIT'){
 			steps {
 				git credentialsId: 'bc8a73bd-e260-4c70-acce-8f6daa7dd67d', url: 'https://github.com/sridharbabukv/HouseApp.git'
 			}
 		}
 		/*Unit Testing with Maven Build Tool*/
-		stage ('Unit Test'){
+		stage ('Unit Testing'){
 			steps {
 				bat label: '', script: 'mvn clean test'
 			}
 		}
 		/*Code Analysis with SonarQube and PostgreSQL*/
-		stage('Sonar Qube Analysis'){
+		stage('Code Analysis'){
 			steps{				
 				withSonarQubeEnv('sonar1')
 				{
@@ -34,7 +34,7 @@ pipeline
 			  }			  		
 		  }
 		  /* Remove Existing Docker Container */
-		stage('Remove Existing QA env')
+		stage('Remove Existing Docker Image')
 		{
 			steps {    
 				script {
@@ -52,14 +52,14 @@ pipeline
 			}
 		}
    		/* Create Docker Image */
-		stage('Create Docker Image for QA env')
+		stage('Create Docker Image')
 		{
 			steps {
 			bat label: '', script: 'docker build -t kellavijay/javadockerimage:1.0 .'
 			}
 		}
 		/* Push Docker Image to Docker Hub */
-		stage('Push Docker Image to DockerHub'){
+		stage('Push Docker Image'){
 			steps {
 			withCredentials([string(credentialsId: 'vijayDockerHub', variable: 'dockerHudPwd')]) {
 				bat "docker login -u kellavijay -p ${dockerHudPwd}"
@@ -69,7 +69,7 @@ pipeline
 			}
 		}
 		/* Create Docker Container and Deploy to QA Environment */
-		stage('Start QA env'){
+		stage('Deploy to QA Environment'){
 			steps {    
 				bat 'docker run -itd --name TestingServer -p 9553:8080 kellavijay/javadockerimage:1.0'                
 				script {
