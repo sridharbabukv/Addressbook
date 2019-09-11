@@ -33,8 +33,8 @@ public class ContactForm extends FormLayout {
 
     TextField phone = new TextField("Contact");
     TextField email = new TextField("Email");
-
     DateField birthDate = new DateField("Birthday");
+
 
     Contact contact;
 
