@@ -15,7 +15,7 @@ pipeline
 				bat label: '', script: 'mvn clean test'
 			}
 		}
-		/*Code Analysis with SonarQube and PostgreSQL*/
+		/*Code Analysis with SonarQube and PostgreSQL
 		stage('Code Analysis'){
 			steps{				
 				withSonarQubeEnv('sonar1')
@@ -23,7 +23,7 @@ pipeline
 					bat "${MAVEN_HOME}/bin/mvn sonar:sonar"
 				}
 			}
-		}		
+		}	*/	
 		/* Package with Maven Build Tool */	
 		 stage('Package')
 		  {
